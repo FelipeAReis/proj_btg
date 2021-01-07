@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proj_btg/Controller/list_page_controller.dart';
 
-
-
 import 'package:proj_btg/Model/moeda.dart';
 
 class ListPage extends StatelessWidget {
@@ -23,10 +21,11 @@ class ListPage extends StatelessWidget {
               width: size.width,
               height: size.height,
               child: FutureBuilder(
-                  future: listController.getCurrency().catchError((onError) => print(onError)),
+                  future: listController
+                      .getCurrency()
+                      .catchError((onError) => print(onError)),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (!snapshot.hasData) return Container();
-
 
                     print(snapshot);
                     List<Moeda> item = snapshot.data;
@@ -34,23 +33,18 @@ class ListPage extends StatelessWidget {
                     item.sort((a, b) => a.valor.compareTo(b.valor));
 
                     return (item != null)
-                   ? 
-                            ListView.separated(
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                      title:Text(item[index].valor),
-                                      subtitle: Text(item[index].sigla)
-                                      );
-                                },
-                                separatorBuilder: (context, index) => Divider(),
-                                itemCount: item.length)
+                        ? ListView.separated(
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                  title: Text(item[index].valor),
+                                  subtitle: Text(item[index].sigla));
+                            },
+                            separatorBuilder: (context, index) => Divider(),
+                            itemCount: item.length)
                         : Center(
                             child: CircularProgressIndicator(),
                           );
-                  }
-                  )
-                  )
-                  ),
+                  }))),
     );
   }
 }

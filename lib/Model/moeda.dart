@@ -1,18 +1,14 @@
-class Moeda{
-
+class Moeda {
   String sigla;
   String valor;
 
-Moeda({this.sigla, this.valor});
+  Moeda({this.sigla, this.valor});
 
+  Moeda.fromJson(Map<String, dynamic> json)
+      : sigla = json['sigla'],
+        valor = json['valor'];
 
-
-  Moeda.fromJson(Map<String, dynamic> json) :
-    
-    sigla = json['sigla'],
-    valor = json['valor'];
-
-      toJSONEncodable() {
+  toJSONEncodable() {
     Map<String, dynamic> moeda = new Map();
 
     moeda['sigla'] = sigla;
@@ -20,7 +16,4 @@ Moeda({this.sigla, this.valor});
 
     return moeda;
   }
- 
 }
-
-

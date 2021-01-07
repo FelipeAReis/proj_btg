@@ -3,13 +3,8 @@ import 'package:proj_btg/Model/moeda.dart';
 import 'package:proj_btg/constants.dart';
 import 'package:http/http.dart' as Http;
 
-
 class ListPageController {
-
-
-Future<List<Moeda>> getCurrency() async {
-
-
+  Future<List<Moeda>> getCurrency() async {
     String uri = endPoint + 'list?' + 'access_key=' + accessKey;
     Http.Response response = await Http.get(uri);
 
@@ -27,6 +22,5 @@ Future<List<Moeda>> getCurrency() async {
       print('A Requisição falhou status: ${response.statusCode}');
       return null;
     }
-}
   }
-
+}

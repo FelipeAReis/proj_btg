@@ -5,13 +5,12 @@ class HistoricoItem {
   double valorFinal;
   String date;
 
-  HistoricoItem({
-    this.moedaOrigem,
-    this.moedaDestino,
-    this.valorInicial,
-    this.valorFinal,
-    this.date 
-    });
+  HistoricoItem(
+      {this.moedaOrigem,
+      this.moedaDestino,
+      this.valorInicial,
+      this.valorFinal,
+      this.date});
 
   toJSONEncodable() {
     Map<String, dynamic> historico = new Map();
@@ -24,13 +23,12 @@ class HistoricoItem {
     return historico;
   }
 
-  HistoricoItem.fromJson(Map<String, dynamic> json) :
-    
-    moedaOrigem = json['moedaOrigem'],
-    moedaDestino = json['moedaDestino'],
-    valorInicial = json['valorFinal'],
-    valorFinal = json['valorInicial'],
-    date = json['date'] ;
+  HistoricoItem.fromJson(Map<String, dynamic> json)
+      : moedaOrigem = json['moedaOrigem'],
+        moedaDestino = json['moedaDestino'],
+        valorInicial = json['valorFinal'],
+        valorFinal = json['valorInicial'],
+        date = json['date'];
 }
 
 class HistoricoList {
