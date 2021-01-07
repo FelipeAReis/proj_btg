@@ -46,10 +46,38 @@ class _HomePageState extends State<HomePage> {
         child: Stack(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(40, 50, 40, 50),
+              padding: EdgeInsets.fromLTRB(40, 30, 40, 50),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(
+                    height: 50,
+                    width: double.infinity,
+                    child: RaisedButton(
+                        color: Colors.blueGrey,
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/listPage');
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(
+                              Icons.list_alt,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              "Listagem de Moedas",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24),
+                            ),
+                          ],
+                        )),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
                   Text(
                     "Moeda de Origem:",
                     style: TextStyle(
@@ -58,7 +86,9 @@ class _HomePageState extends State<HomePage> {
                         fontSize: 18),
                   ),
                   FutureBuilder(
-                      future: homeController.getCurrency().catchError((onError) => print(onError)),
+                      future: homeController
+                          .getCurrency()
+                          .catchError((onError) => print(onError)),
                       builder: (context, data) {
                         if (!data.hasData)
                           return DropdownButton(
@@ -90,11 +120,6 @@ class _HomePageState extends State<HomePage> {
                           },
                         );
                       }),
-
-
-
-
-
                   TextFormField(
                     keyboardType: TextInputType.number,
 
@@ -107,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 80,
+                    height: 50,
                   ),
                   Text(
                     "Moeda Desejada para Conversão:",
@@ -117,13 +142,12 @@ class _HomePageState extends State<HomePage> {
                         fontSize: 18),
                   ),
 
-
-
-
                   /* Destino */
 
                   FutureBuilder(
-                      future: homeController.getCurrency().catchError((onError) => print(onError)),
+                      future: homeController
+                          .getCurrency()
+                          .catchError((onError) => print(onError)),
                       builder: (context, data) {
                         if (!data.hasData)
                           return DropdownButton(
@@ -155,11 +179,6 @@ class _HomePageState extends State<HomePage> {
                           },
                         );
                       }),
-
-
-
-
-
                   SizedBox(
                     height: 20,
                   ),
@@ -193,32 +212,36 @@ class _HomePageState extends State<HomePage> {
                 child: RaisedButton(
                   color: Colors.blueGrey,
                   onPressed: () {
-
                     if (_textEditingController.text != "") {
                       homeController.convertMoeda(_textEditingController.text,
                           _valueOrigem, _valueDestino);
-                      showDialog(context: context,
-                      builder: (context) => AlertDialog(
-                        title: Text("Sucesso"),
-                        content: Text("Sua conversão foi realizada"),
-                        actions: [FlatButton(onPressed: () => Navigator.of(context).pop(), child: Text("OK"))],
-
-                      ),);
-                    }else{
-
-                      showDialog(context: context,
-                      builder: (context) => AlertDialog(
-                        title: Text("Nenhuma Conversão"),
-                        content: Text("Seu campo esta vazio ou algo não saiu como o esperado"),
-                        actions: [FlatButton(onPressed: () => Navigator.of(context).pop(), child: Text("OK"))],
-
-                      ),);
-
-
-
-
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Sucesso"),
+                          content: Text("Sua conversão foi realizada"),
+                          actions: [
+                            FlatButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text("OK"))
+                          ],
+                        ),
+                      );
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Nenhuma Conversão"),
+                          content: Text(
+                              "Seu campo esta vazio ou algo não saiu como o esperado"),
+                          actions: [
+                            FlatButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text("OK"))
+                          ],
+                        ),
+                      );
                     }
-
                   },
                   child: Text(
                     "Converter",

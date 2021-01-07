@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:proj_btg/Components/introscreen.dart';
+import 'package:proj_btg/View/list_page.dart';
 
 
 import 'View/history_page.dart';
@@ -29,6 +30,7 @@ class Initial extends StatelessWidget {
 
          '/homePage' : (BuildContext context) => new HomePage(),
          '/historyPage' : (BuildContext context) => new HistoryPage(),
+         '/listPage' : (BuildContext context) => new ListPage()
        },
      );
   }
